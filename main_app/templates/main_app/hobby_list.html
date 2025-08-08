@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/hobbies/hobby-index.css' %}" />
+{% endblock %}
+{% block content %}
+
+<section class="page-header">
+    <h1>All Hobbies</h1>
+
+</section>
+
+<section class="card-container">
+    {% for hobby in hobby_list %}
+    <div class="card">
+
+        <a href="{% url 'hobby-detail' hobby.id %}">
+            <div class="card-content">
+                <h2>{{ hobby.name }}</h2>
+
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</section>
+
+{% endblock %}

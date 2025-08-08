@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/crafts/craft-detail.css' %}" />
+{% endblock %}
+{% block content %}
+<section class="craft-container">
+    <div class="">
+        <img src="" alt="" />
+    </div>
+    <div class="craft-details">
+        <h1>{{ craft.title }}</h1>
+
+        <h2>Difficulty: {{ craft.level }} </h2>
+
+        <h2>Supplies {{ craft.supplies }} </h2>
+
+        <p>Instructions: {{ craft.instructions }}</p>
+
+        <div class="craft-actions">
+            <a href="{% url 'craft-update' craft.id %}" class="btn warn">Edit</a>
+            <a href="{% url 'craft-delete' craft.id %}" class="btn danger">Delete</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

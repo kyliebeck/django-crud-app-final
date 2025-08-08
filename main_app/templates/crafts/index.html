@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link rel="stylesheet" href="{% static 'css/crafts/craft-index.css' %}" />
+{% endblock %} {% block content %}
+
+<section class="page-header">
+
+</section>
+
+<section class="card-container">
+    {% for craft in crafts %}
+    <div class="card">
+        <a href="{% url 'craft-detail' craft.id %}">
+            <div class="card-content">
+                <div class="card-img-container">
+                    <img src="" alt="" />
+                </div>
+                <h2 class="card-title">{{ craft.title }}</h2>
+                <p><small>Difficulty Level: {{ craft.level }}</small></p>
+                <p>Supplies: {{ craft.supplies }}</p>
+                <p>Instructions: {{ craft.instructions }}</p>
+            </div>
+    </div>
+    {% endfor %}
+</section>
+
+{% endblock %}
