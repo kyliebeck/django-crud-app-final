@@ -17,10 +17,46 @@
 
         <p>Instructions: {{ craft.instructions }}</p>
 
+        <h3>Designated Hobby:</h3>
+        <div class="subsection-content">
+            {% if craft.hobbies.count %}
+            {% for hobby in craft.hobbies.all %}
+            <div class="hobby-container">
+                <div class=></div>
+                <a href="{% url 'hobby-detail' hobby.id %}">
+                    <p>{{ hobby.name }}</p>
+                </a>
+            </div>
+            {% endfor %}
+            {% else %}
+            <p class="no-hobbies">{{craft.title}} needs a hobby category!</p>
+            {% endif %}
+        </div>
+
+
         <div class="craft-actions">
             <a href="{% url 'craft-update' craft.id %}" class="btn warn">Edit</a>
             <a href="{% url 'craft-delete' craft.id %}" class="btn danger">Delete</a>
         </div>
-    </div>
+
+
+        <h3>Select Hobby</h3>
+        <div class="subsection-content">
+            {% if hobbies.count %}
+            {% for hobby in hobbies %}
+            <div class="hobby-container">
+                <a href="{% url 'hobby-detail' hobby.id %}">
+                    <p> {{ hobby.name }}</p>
+                </a>
+                <form action="{% url 'associate-hobby' craft.id hobby.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn submit">Select</button>
+                </form>
+            </div>
+            {% endfor %}
+            {% else %}
+            <p class="all-hobbies">{{craft.title}} is associated with all available hobbies</p>
+            {% endif %}
+        </div>
 </section>
 {% endblock %}

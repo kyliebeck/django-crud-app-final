@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 LEVELS = (
     ('B', 'Beginner'),
@@ -27,7 +28,8 @@ class Craft(models.Model):
     )
     supplies = models.CharField(max_length=250)
     instructions = models.TextField(max_length=500)
-    hobby = models.ManyToManyField(Hobby)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    hobbies = models.ManyToManyField(Hobby)
     def __str__(self):
         return self.title
     
