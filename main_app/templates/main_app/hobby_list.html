@@ -13,7 +13,7 @@
 <section class="card-container">
     {% for hobby in hobby_list %}
     <div class="card">
-
+        <div class="card-bg"></div>
         <a href="{% url 'hobby-detail' hobby.id %}">
             <div class="card-content">
                 <h2>{{ hobby.name }}</h2>

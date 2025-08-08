@@ -7,6 +7,16 @@ LEVELS = (
     ('A', 'Advanced')
 )
 
+class Hobby(models.Model):
+    name = models.CharField(max_length=50)
+    description = models.TextField(max_length=500)
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('hobby-detail', kwargs={'pk': self.id})
+    
+
 class Craft(models.Model):
     title = models.CharField(max_length=100)
     duration = models.CharField(max_length=20)
@@ -17,19 +27,9 @@ class Craft(models.Model):
     )
     supplies = models.CharField(max_length=250)
     instructions = models.TextField(max_length=500)
-
+    hobby = models.ManyToManyField(Hobby)
     def __str__(self):
         return self.title
     
     def get_absolute_url(self):
         return reverse('craft-detail', kwargs={'craft_id': self.id})
-
-
-class Hobby(models.Model):
-    name = models.CharField(max_length=50)
-    description = models.TextField(max_length=500)
-    def __str__(self):
-        return self.name
-
-    def get_absolute_url(self):
-        return reverse('hobby-detail', kwargs={'pk': self.id})

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/hobbies/hobby-detail.css' %}" />
+{% endblock %}
+{% block content %}
+
+<div class="card">
+    <div class="card-bg"></div>
+    <div class="card-content">
+        <h2>{{ hobby.name }}</h2>
+        <p> {{ hobby.description }} </p>
+    </div>
+</div>
+<a href="{% url 'hobby-update' hobby.id %}" class="btn warn">Edit</a>
+<a href="{% url 'hobby-delete' hobby.id %}" class="btn danger">Delete</a>
+
+{% endblock %}

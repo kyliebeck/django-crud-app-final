@@ -15,6 +15,7 @@ def craft_index(request):
 
 def craft_detail(request, craft_id):
     craft = Craft.objects.get(id=craft_id)
+    hobby = Hobby.objects.all()
     return render(request, 'crafts/detail.html', {'craft': craft})
 
 class CraftCreate(CreateView):
@@ -36,6 +37,13 @@ class HobbyCreate(CreateView):
 class HobbyList(ListView):
     model = Hobby
 
-class HobbyDetail(DeleteView):
+class HobbyDetail(DetailView):
     model = Hobby
-    
+
+class HobbyUpdate(UpdateView):
+    model = Hobby
+    fields = '__all__'
+
+class HobbyDelete(DeleteView):
+    model = Hobby
+    success_url = '/hobbies/'
